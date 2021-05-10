@@ -7,20 +7,34 @@ import { Header } from "src/components/Header";
 import { useCallback, useEffect, useState } from "react";
 
 export default function Home() {
-  const [foo, setFoo] = useState(1);
+  const [count, setcount] = useState(1);
+  const [text, setText] = useState("");
+  const [isShow, setIsShow] = useState(true);
 
   const hundleClick = useCallback(() => {
-    if (foo < 10) {
-      setFoo((foo) => foo + 1);
+    if (count < 10) {
+      setcount((count) => count + 1);
     }
-  }, [foo]);
+  }, [count]);
+
+  const hundleChange = useCallback((e) => {
+    if (e.target.value.length > 5) {
+      alert("5文字以内だよ");
+      return;
+    }
+    setText(e.target.value.trim());
+  }, []);
+
+  const hundleCount = useCallback(() => {
+    setIsShow((isShow) => !isShow);
+  });
 
   useEffect(() => {
     document.body.style.backgroundColor = "lightblue";
     return () => {
       document.body.style.backgroundColor = "";
     };
-  }, [foo]);
+  }, [count]);
 
   return (
     <div className={styles.container}>
@@ -29,8 +43,12 @@ export default function Home() {
       </Head>
 
       <Header />
-      <h1>{foo}</h1>
+
+      {isShow ? <h1>{count}</h1> : null}
       <button onClick={hundleClick}>ボタン</button>
+      <button onClick={hundleCount}>{isShow ? "非表示" : "表示"}</button>
+
+      <input type="text" value={text} onChange={hundleChange} />
 
       <Main page={"index"} />
 
