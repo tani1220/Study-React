@@ -13,7 +13,7 @@ export default function Home() {
 
   const hundleClick = useCallback(() => {
     if (count < 10) {
-      setcount((count) => count + 1);
+      setcount((prevCount) => prevCount + 1);
     }
   }, [count]);
 
@@ -26,7 +26,7 @@ export default function Home() {
   }, []);
 
   const hundleCount = useCallback(() => {
-    setIsShow((isShow) => !isShow);
+    setIsShow((prevIsShow) => !prevIsShow);
   });
 
   useEffect(() => {
