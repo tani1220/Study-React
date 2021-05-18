@@ -10,6 +10,7 @@ export default function Home() {
   const [count, setcount] = useState(1);
   const [text, setText] = useState("");
   const [isShow, setIsShow] = useState(true);
+  const [array, setArray] = useState([]);
 
   const hundleClick = useCallback(() => {
     if (count < 10) {
@@ -29,6 +30,16 @@ export default function Home() {
     setIsShow((prevIsShow) => !prevIsShow);
   });
 
+  const hundleAdd = useCallback(() => {
+    setArray((prevArray) => {
+      if (prevArray.some((item) => item === text)) {
+        alert("文字が被ってるよ");
+        return prevArray;
+      }
+      return [...prevArray, text];
+    });
+  }, [text]);
+
   useEffect(() => {
     document.body.style.backgroundColor = "lightblue";
     return () => {
@@ -41,17 +52,18 @@ export default function Home() {
       <Head>
         <title>index page</title>
       </Head>
-
       <Header />
-
       {isShow ? <h1>{count}</h1> : null}
       <button onClick={hundleClick}>ボタン</button>
       <button onClick={hundleCount}>{isShow ? "非表示" : "表示"}</button>
-
       <input type="text" value={text} onChange={hundleChange} />
-
+      <button onClick={hundleAdd}>追加</button>
+      <ul>
+        {array.map((item) => {
+          return <li key={item}>{item}</li>;
+        })}
+      </ul>
       <Main page={"index"} />
-
       <Footer />
     </div>
   );
