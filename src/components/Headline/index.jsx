@@ -9,6 +9,8 @@ export function Headline(props) {
         Get started by editing
         {props.children}
       </p>
+
+      <button onClick={props.hundleReduce}>一つ減らす</button>
     </div>
   );
 }
