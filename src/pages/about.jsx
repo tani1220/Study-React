@@ -6,7 +6,7 @@ import { Main } from "src/components/Main";
 import { Header } from "src/components/Header";
 
 export default function About({
-  count,
+  doubleCount,
   isShow,
   hundleClick,
   hundleCount,
@@ -30,7 +30,7 @@ export default function About({
         })}
       </ul>
 
-      {isShow ? <h1>{count}</h1> : null}
+      {isShow ? <h1>{doubleCount}</h1> : null}
       <button onClick={hundleClick}>ボタン</button>
       <button onClick={hundleCount}>{isShow ? "非表示" : "表示"}</button>
 
