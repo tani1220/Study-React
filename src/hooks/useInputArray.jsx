@@ -14,7 +14,7 @@ export const useInputArray = () => {
 
   const hundleAdd = useCallback(() => {
     setArray((prevArray) => {
-      if (prevArray.some((item) => item === text)) {
+      if (prevArray.includes(text)) {
         alert("文字が被ってるよ");
         return prevArray;
       }

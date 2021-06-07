@@ -5,16 +5,7 @@ import { Footer } from "src/components/Footer";
 import { Main } from "src/components/Main";
 import { Header } from "src/components/Header";
 
-export default function About({
-  doubleCount,
-  isShow,
-  hundleClick,
-  hundleCount,
-  text,
-  array,
-  hundleChange,
-  hundleAdd,
-}) {
+const About = (props) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -22,20 +13,24 @@ export default function About({
       </Head>
       <Header />
 
-      <input type="text" value={text} onChange={hundleChange} />
-      <button onClick={hundleAdd}>追加</button>
+      <input type="text" value={props.text} onChange={props.hundleChange} />
+      <button onClick={props.hundleAdd}>追加</button>
       <ul>
-        {array.map((item) => {
+        {props.array.map((item) => {
           return <li key={item}>{item}</li>;
         })}
       </ul>
 
-      {isShow ? <h1>{doubleCount}</h1> : null}
-      <button onClick={hundleClick}>ボタン</button>
-      <button onClick={hundleCount}>{isShow ? "非表示" : "表示"}</button>
+      {props.isShow ? <h1>{props.doubleCount}</h1> : null}
+      <button onClick={props.hundleClick}>ボタン</button>
+      <button onClick={props.hundleCount}>
+        {props.isShow ? "非表示" : "表示"}
+      </button>
 
       <Main page={"about"} />
       <Footer />
     </div>
   );
-}
+};
+
+export default About;
