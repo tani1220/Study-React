@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import styles from "src/components/Footer/Footer.module.css";
 
 export const Footer = () => {
