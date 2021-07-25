@@ -1,44 +1,66 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useReducer } from "react";
+
+const inititalArg = {
+  data: [],
+  loging: true,
+  error: null,
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "end":
+      return {
+        ...state,
+        data: action.data,
+        loding: false,
+      };
+    case "error":
+      return {
+        ...state,
+        error: action.error,
+        loding: false,
+      };
+    default: {
+      throw new Error("errorだよ");
+    }
+  }
+};
 
 export const Posts = () => {
-  const [posts, setPosts] = useState([]);
-  const [loding, setLoding] = useState(true);
-  const [error, setError] = useState(null);
+  const [state, dispatch] = useReducer(reducer, inititalArg);
 
   const getPosts = useCallback(async () => {
     try {
       const res = await fetch("https://jsonplaceholder.typicode.com/posts");
       if (!res.ok) {
-        throw new error("エラー発生");
+        throw new Error("エラー発生");
       }
       const json = await res.json();
-      setPosts(json);
+      dispatch({ type: "end", data: json });
     } catch (error) {
-      setError(error);
+      dispatch({ type: "error", error });
     }
-    setLoding(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     getPosts();
   }, [getPosts]);
 
-  if (loding) {
+  if (state.loding) {
     return <div>loding now ...</div>;
   }
 
-  if (error) {
-    return <div>{error.message}</div>;
+  if (state.error) {
+    return <div>{state.error.message}</div>;
   }
 
-  if (posts.length === 0) {
+  if (state.data.length === 0) {
     return <div>データは空</div>;
   }
 
   return (
     <ol>
-      {posts.map((post) => {
+      {state.data.map((post) => {
         return <li key={post.id}>{post.title}</li>;
       })}
     </ol>
