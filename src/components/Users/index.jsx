@@ -1,11 +1,7 @@
-import useSWR from "swr";
-import { fetcher } from "src/utils/fetcher";
+import { useUsers } from "src/hooks/useUsers";
 
 export const Users = () => {
-  const { data, error } = useSWR(
-    "https://jsonplaceholder.typicode.com/users",
-    fetcher
-  );
+  const { data, error } = useUsers();
 
   if (error) {
     return <div>{error.message}</div>;

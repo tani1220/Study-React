@@ -1,11 +1,7 @@
-import { fetcher } from "src/utils/fetcher";
-import useSWR from "swr";
+import { useComments } from "src/hooks/useComments";
 
 export const Comments = () => {
-  const { data, error } = useSWR(
-    "https://jsonplaceholder.typicode.com/comments",
-    fetcher
-  );
+  const { data, error } = useComments();
 
   if (error) {
     return <div>{error.message}</div>;
