@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useComments } from "src/hooks/useComments";
 
 export const Comments = () => {
@@ -14,7 +15,11 @@ export const Comments = () => {
   return (
     <ul>
       {data?.map((item) => {
-        return <li key={item.id}>{item.body}</li>;
+        return (
+          <li key={item.id}>
+            <Link href={`comments/${item.id}`}>{item.body}</Link>
+          </li>
+        );
       })}
     </ul>
   );

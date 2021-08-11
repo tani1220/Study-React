@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useUsers } from "src/hooks/useUsers";
 
 export const Users = () => {
@@ -14,7 +15,11 @@ export const Users = () => {
   return (
     <ul>
       {data?.map((item) => {
-        return <li key={item.id}>{item.name}</li>;
+        return (
+          <li key={item.id}>
+            <Link href={`user/${item.id}`}>{item.name}</Link>
+          </li>
+        );
       })}
     </ul>
   );

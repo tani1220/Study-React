@@ -4,12 +4,12 @@ import { Header } from "src/components/Header";
 import { fetcher } from "src/utils/fetcher";
 import useSWR from "swr";
 
-const UserId = () => {
+const Comments = () => {
   const router = useRouter();
 
   const { data, error } = useSWR(
-    router.query.userId
-      ? `https://jsonplaceholder.typicode.com/users/${router.query.userId}`
+    router.query.commentId
+      ? `https://jsonplaceholder.typicode.com/comments/${router.query.commentId}`
       : null,
     fetcher
   );
@@ -19,13 +19,12 @@ const UserId = () => {
   }
 
   if (!data) {
-    return <div>Loding...</div>;
+    return <div>...Loding</div>;
   }
-
   return (
     <div>
       <Head>
-        <title>user Page</title>
+        <title>Comments Page</title>
       </Head>
       <Header />
 
@@ -35,4 +34,4 @@ const UserId = () => {
   );
 };
 
-export default UserId;
+export default Comments;
