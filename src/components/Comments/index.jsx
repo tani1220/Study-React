@@ -2,13 +2,13 @@ import Link from "next/link";
 import { useComments } from "src/hooks/useComments";
 
 export const Comments = () => {
-  const { data, error } = useComments();
+  const { data, error, isLoding } = useComments();
 
   if (error) {
     return <div>{error.message}</div>;
   }
 
-  if (!data) {
+  if (isLoding) {
     return <div>Loding....</div>;
   }
 

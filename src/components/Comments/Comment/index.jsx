@@ -1,23 +1,13 @@
-import { fetcher } from "src/utils/fetcher";
-import useSWR from "swr";
-import { useRouter } from "next/router";
 import Head from "next/head";
+import { useComment } from "src/hooks/useComment";
 
 export const Comment = () => {
-  const router = useRouter();
-
-  const { data, error } = useSWR(
-    router.query.commentId
-      ? `https://jsonplaceholder.typicode.com/comments/${router.query.commentId}`
-      : null,
-    fetcher
-  );
-
+  const { data, error, isLoding } = useComment();
   if (error) {
     return <div>{error.message}</div>;
   }
 
-  if (!data) {
+  if (isLoding) {
     return <div>...Loding</div>;
   }
 

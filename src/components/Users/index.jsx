@@ -2,13 +2,13 @@ import Link from "next/link";
 import { useUsers } from "src/hooks/useUsers";
 
 export const Users = () => {
-  const { data, error } = useUsers();
+  const { data, error, isLoding } = useUsers();
 
   if (error) {
     return <div>{error.message}</div>;
   }
 
-  if (!data) {
+  if (isLoding) {
     return <div>loding...</div>;
   }
 

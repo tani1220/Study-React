@@ -7,5 +7,5 @@ export const useUsers = () => {
     fetcher
   );
 
-  return { data, error };
+  return { data, error, isLoding: !data && !error };
 };

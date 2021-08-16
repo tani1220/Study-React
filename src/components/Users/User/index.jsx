@@ -1,23 +1,13 @@
-import { fetcher } from "src/utils/fetcher";
-import useSWR from "swr";
-import { useRouter } from "next/router";
 import Head from "next/head";
+import { useUser } from "src/hooks/useUser";
 
 export const User = () => {
-  const router = useRouter();
-
-  const { data, error } = useSWR(
-    router.query.userId
-      ? `https://jsonplaceholder.typicode.com/users/${router.query.userId}`
-      : null,
-    fetcher
-  );
-
+  const { data, error, isLoding } = useUser();
   if (error) {
     return <div>{error.message}</div>;
   }
 
-  if (!data) {
+  if (isLoding) {
     return <div>Loding...</div>;
   }
 
