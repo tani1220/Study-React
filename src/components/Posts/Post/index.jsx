@@ -1,11 +1,16 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { CommentsByPostId } from "src/components/Comments/CommentsByPostId";
+import { UserByUserId } from "src/components/Users/User/UserByUserId";
 import { usePost } from "src/hooks/usePost";
+import { fetcher } from "src/utils/fetcher";
+import useSWR from "swr";
 
 export const Post = () => {
-  const { post, user, error, isLoding } = usePost();
+  const { data, error, isLoding } = usePost();
 
   if (isLoding) {
-    return <div>loding now ...</div>;
+    <div>Loading...</div>;
   }
 
   if (error) {
@@ -15,12 +20,14 @@ export const Post = () => {
   return (
     <div>
       <Head>
-        <title>{post?.title}</title>
+        <title>{data?.title}</title>
       </Head>
-      <h1>{post?.title}</h1>
-      <p>{post?.body}</p>
+      <h1>{data?.title}</h1>
+      <p>{data?.body}</p>
 
-      {user?.name ? <h2>作成者名 - {user.name}</h2> : null}
+      <UserByUserId userId={data.userId} />
+
+      <CommentsByPostId id={data?.id} />
     </div>
   );
 };

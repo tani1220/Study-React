@@ -1,15 +1,15 @@
 import Link from "next/link";
-import { useUsers } from "src/hooks/useFetchArray";
+import { useCommentsByPostId } from "src/hooks/useFetchArray";
 
-export const Users = () => {
-  const { data, error, isLoding, isEmpty } = useUsers();
+export const CommentsByPostId = (props) => {
+  const { data, error, isLoding, isEmpty } = useCommentsByPostId(props.id);
 
   if (error) {
     return <div>{error.message}</div>;
   }
 
   if (isLoding) {
-    return <div>loding...</div>;
+    return <div>Loding....</div>;
   }
 
   if (isEmpty) {
@@ -21,7 +21,7 @@ export const Users = () => {
       {data?.map((item) => {
         return (
           <li key={item.id}>
-            <Link href={`user/${item.id}`}>{item.name}</Link>
+            <Link href={`comments/${item.id}`}>{item.body}</Link>
           </li>
         );
       })}
