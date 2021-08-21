@@ -21,7 +21,7 @@ export const CommentsByPostId = (props) => {
       {data?.map((item) => {
         return (
           <li key={item.id}>
-            <Link href={`comments/${item.id}`}>{item.body}</Link>
+            <Link href={`/comments/${item.id}`}>{item.body}</Link>
           </li>
         );
       })}

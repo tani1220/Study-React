@@ -22,7 +22,7 @@ export const Post = () => {
       <h1>{data?.title}</h1>
       <p>{data?.body}</p>
 
-      <UserByUserId userId={data.userId} />
+      <UserByUserId userId={data?.userId} />
 
       <CommentsByPostId id={data?.id} />
     </div>
