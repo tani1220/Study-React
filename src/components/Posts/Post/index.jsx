@@ -1,10 +1,7 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
 import { CommentsByPostId } from "src/components/Comments/CommentsByPostId";
 import { UserByUserId } from "src/components/Users/User/UserByUserId";
 import { usePost } from "src/hooks/usePost";
-import { fetcher } from "src/utils/fetcher";
-import useSWR from "swr";
 
 export const Post = () => {
   const { data, error, isLoding } = usePost();
