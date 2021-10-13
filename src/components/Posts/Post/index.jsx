@@ -4,9 +4,9 @@ import { UserByUserId } from "src/components/Users/User/UserByUserId";
 import { usePost } from "src/hooks/usePost";
 
 export const Post = () => {
-  const { data, error, isLoding } = usePost();
+  const { data, error, isLoading } = usePost();
 
-  if (isLoding) {
+  if (isLoading) {
     <div>Loading...</div>;
   }
 

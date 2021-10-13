@@ -2,14 +2,14 @@ import Link from "next/link";
 import { useComments } from "src/hooks/useFetchArray";
 
 export const Comments = () => {
-  const { data, error, isLoding, isEmpty } = useComments();
+  const { data, error, isLoading, isEmpty } = useComments();
 
   if (error) {
     return <div>{error.message}</div>;
   }
 
-  if (isLoding) {
-    return <div>Loding....</div>;
+  if (isLoading) {
+    return <div>loading....</div>;
   }
 
   if (isEmpty) {

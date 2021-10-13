@@ -14,7 +14,7 @@ export const usePost = () => {
 
   return {
     data,
-    isLoding: !data && !error,
+    isLoading: !data && !error,
     error,
   };
 };

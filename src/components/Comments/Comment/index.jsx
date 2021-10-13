@@ -4,13 +4,13 @@ import { UserByUserId } from "src/components/Users/User/UserByUserId";
 import { useComment } from "src/hooks/useComment";
 
 export const Comment = () => {
-  const { data, error, isLoding } = useComment();
+  const { data, error, isLoading } = useComment();
   if (error) {
     return <div>{error.message}</div>;
   }
 
-  if (isLoding) {
-    return <div>...Loding</div>;
+  if (isLoading) {
+    return <div>...loading</div>;
   }
 
   return (

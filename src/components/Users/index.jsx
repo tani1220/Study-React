@@ -2,14 +2,14 @@ import Link from "next/link";
 import { useUsers } from "src/hooks/useFetchArray";
 
 export const Users = () => {
-  const { data, error, isLoding, isEmpty } = useUsers();
+  const { data, error, isLoading, isEmpty } = useUsers();
 
   if (error) {
     return <div>{error.message}</div>;
   }
 
-  if (isLoding) {
-    return <div>loding...</div>;
+  if (isLoading) {
+    return <div>loading...</div>;
   }
 
   if (isEmpty) {

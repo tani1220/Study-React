@@ -7,7 +7,7 @@ const useFetchArray = (url) => {
   return {
     data,
     error,
-    isLoding: !error && !data,
+    isLoading: !error && !data,
     isEmpty: data && data.length === 0,
   };
 };

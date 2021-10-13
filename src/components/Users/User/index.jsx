@@ -4,13 +4,13 @@ import { PostsByUserId } from "src/components/Posts/PostsByUserId";
 import { useUser } from "src/hooks/useUser";
 
 export const User = () => {
-  const { data, error, isLoding } = useUser();
+  const { data, error, isLoading } = useUser();
   if (error) {
     return <div>{error.message}</div>;
   }
 
-  if (isLoding) {
-    return <div>Loding...</div>;
+  if (isLoading) {
+    return <div>loading...</div>;
   }
 
   return (

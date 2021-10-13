@@ -2,9 +2,9 @@ import Link from "next/link";
 import { usePosts } from "src/hooks/useFetchArray";
 
 export const Posts = () => {
-  const { data, error, isLoding, isEmpty } = usePosts();
-  if (isLoding) {
-    return <div>loding now ...</div>;
+  const { data, error, isLoading, isEmpty } = usePosts();
+  if (isLoading) {
+    return <div>loading now ...</div>;
   }
 
   if (error) {

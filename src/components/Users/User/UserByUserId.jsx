@@ -1,14 +1,14 @@
 import { useUserByPostId } from "src/hooks/useFetchArray";
 
 export const UserByUserId = (props) => {
-  const { data, error, isLoding, isEmpty } = useUserByPostId(props.userId);
+  const { data, error, isLoading, isEmpty } = useUserByPostId(props.userId);
 
   if (error) {
     return <div>{error.message}</div>;
   }
 
-  if (isLoding) {
-    return <div>loding now ...</div>;
+  if (isLoading) {
+    return <div>loading now ...</div>;
   }
 
   if (isEmpty) {

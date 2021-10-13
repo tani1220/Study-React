@@ -12,5 +12,5 @@ export const useUser = () => {
     fetcher
   );
 
-  return { data, error, isLoding: !data && !error };
+  return { data, error, isLoading: !data && !error };
 };
